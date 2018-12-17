@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 
+import com.getcapacitor.Bridge;
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginHandle;
@@ -23,9 +24,13 @@ public class MainActivity extends BridgeActivity {
     super.onCreate(savedInstanceState);
 
     // Initializes the Bridge
+
+    Bridge bridge = this.getBridge();
+    
     this.init(savedInstanceState, new ArrayList<Class<? extends Plugin>>() {{
       // Additional plugins you've installed go here
       // Ex: add(TotallyAwesomePlugin.class);
+
       add(NfcUri.class);
     }});
 
@@ -36,7 +41,7 @@ public class MainActivity extends BridgeActivity {
       return;
     }
 
-    if (!nfcAdapter.isEnabled()) {
+    if (!nfcAdaptber.isEnabled()) {
       Toast.show(this, "Feil ved NFC. nfcAdapter.isEnabled === false.");
     }
 
